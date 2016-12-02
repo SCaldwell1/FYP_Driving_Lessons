@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.stephen.fyp_driving_lessons.LearnerDetails">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Your Details"
+                android:textSize="30dp" />
+
+            <TextView
+                android:id="@+id/learnerName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Name" />
+
+            <TextView
+                android:id="@+id/learnerNameEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/learnerEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email" />
+
+            <TextView
+                android:id="@+id/learnerEmailEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/learnerPhoneEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Phone"/>
+
+            <EditText
+                android:id="@+id/learnerAddress1Edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Address1"/>
+            <EditText
+                android:id="@+id/learnerAddress2Edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Address2"/>
+            <EditText
+                android:id="@+id/learnerAddress3Edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Address3"/>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@id/learnerSignOutButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:background="#f2f2f2"
+                    android:gravity="left"
+                    android:padding="10dp"
+                    android:text="Sign out"
+                    android:textColor="#000000" />
+
+                  <Button
+                    android:id="@+id/addDetailsButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:background="#f2f2f2"
+                    android:gravity="left"
+                    android:padding="10dp"
+                    android:text="Add Details"
+                    android:textColor="#000000" />
+            </RelativeLayout>
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="246dp"
+                android:id="@+id/learnerList"
+                android:choiceMode="singleChoice">
+
+            </ListView>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

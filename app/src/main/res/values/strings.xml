@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">FYP_Driving_Lessons</string>
+    <string-array name="learner_experience_array">
+        <item>I have little or no driving experience</item>
+        <item>I have some driving experience</item>
+        <item>I have my driving test soon</item>
+    </string-array>
+
+    <string-array name="licence_type_array">
+        <item>I have a valid Irish learner permit</item>
+        <item>I have a full Irish/EU driving licence</item>
+        <item>I have an international driving licence</item>
+        <item>None of the above</item>
+    </string-array>
+
+    <string-array name="car_type_array">
+        <item>I would like to use my own car</item>
+        <item>I would like to use the instructors car</item>
+    </string-array>
+
+    <string-array name="edt_array">
+        <item>Yes, my licence was issued after 4th April 2011</item>
+        <item>No, my licence was issued before 4th April 2011</item>
+    </string-array>
+
+    <string-array name="area_array">
+        <item>North Dublin</item>
+        <item>South Dublin</item>
+        <item>Dublin City Centre</item>
+
+    </string-array>
+    <string name="title_activity_learner_details">LearnerDetails</string>
+    <string name="title_activity_book_atest">BookATest</string>
+    <string name="title_activity_instructor__login">Instructor_Login</string>
+    <string name="title_activity_instructo_details">InstructoDetails</string>
+    <string name="title_activity_instructor_details">InstructorDetails</string>
+    <string name="title_activity_instructors__list">Instructors_List</string>
+</resources>
