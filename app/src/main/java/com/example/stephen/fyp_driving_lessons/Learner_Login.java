@@ -126,6 +126,16 @@ public class Learner_Login extends AppCompatActivity implements GoogleApiClient.
                             Toast.makeText(Learner_Login.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
+
+                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                        user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()){
+
+                                }
+                            }
+                        });
                     }
                 });
 
