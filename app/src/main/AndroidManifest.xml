@@ -27,9 +27,13 @@
             android:label="@string/title_activity_book_atest"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".InstructoDetails"
-            android:label="@string/title_activity_instructo_details"
+            android:name=".LearnerRegister"
+            android:label="@string/title_activity_learner_register"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".DriverLogin"
+            android:label="@string/title_activity_driver_login"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

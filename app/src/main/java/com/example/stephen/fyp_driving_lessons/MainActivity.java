@@ -23,8 +23,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-//    public void InstructorLogin (View view){
-//        Intent intent = new Intent(MainActivity.this, Instructor_Login.class);
-//        startActivity(intent);
- //   }
+    public void InstructorLogin (View view){
+        Intent intent = new Intent(MainActivity.this, DriverLogin.class);
+        startActivity(intent);
+    }
 }

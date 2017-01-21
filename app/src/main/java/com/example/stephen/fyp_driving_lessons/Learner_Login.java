@@ -39,7 +39,7 @@ public class Learner_Login extends AppCompatActivity implements GoogleApiClient.
     GoogleApiClient mGoogleApiClient;
     TextView statusTextView;
     SignInButton loginButton;
-    Button signOutButton;
+    Button register;
     TextView learnerName;
     private static final String TAG = "SignInActivity";
     private static final int RC_SIGN_IN = 9001;
@@ -61,9 +61,18 @@ public class Learner_Login extends AppCompatActivity implements GoogleApiClient.
         statusTextView = (TextView) findViewById(R.id.status);
         loginButton = (SignInButton) findViewById(R.id.loginButton);
         loginButton.setOnClickListener(this);
+
         mAuth = FirebaseAuth.getInstance();
         learnerName = (TextView) findViewById(R.id.learnerNameEdit);
         dbRef = FirebaseDatabase.getInstance().getReference();
+        register = (Button) findViewById(R.id.registerButton);
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Learner_Login.this, LearnerRegister.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -84,14 +93,19 @@ public class Learner_Login extends AppCompatActivity implements GoogleApiClient.
     }
 
     private void signOut() {
-        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
-            @Override
-            public void onResult(@NonNull Status status) {
-                statusTextView.setText("Signed out");
-                Intent intent = new Intent(Learner_Login.this, Learner_Login.class);
-                startActivity(intent);
-            }
-        });
+        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
+                new ResultCallback<Status>() {
+                    @Override
+                    public void onResult(Status status) {
+                       if (status.isSuccess()) {
+                           Toast signOutMessage = Toast.makeText(null, "Sign out successful", Toast.LENGTH_SHORT);
+                           signOutMessage.show();
+                       }else{
+                           Toast signOutErrorMessage = Toast.makeText(null, "Sign out unsuccessful", Toast.LENGTH_SHORT);
+                           signOutErrorMessage.show();
+                       }
+                    }
+                });
     }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
@@ -110,37 +124,40 @@ public class Learner_Login extends AppCompatActivity implements GoogleApiClient.
     private void firebaseAuthWithGoogle(final GoogleSignInAccount acct) {
         Log.d(TAG, "firebaseAuthWithGoogle: " + acct.getId());
 
-        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
-                        Intent intent = new Intent(Learner_Login.this, LearnerDetails.class);
-                        startActivity(intent);
+            AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+            mAuth.signInWithCredential(credential)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
+                            Intent intent = new Intent(Learner_Login.this, LearnerDetails.class);
+                            startActivity(intent);
 
-                        dbRef.child("Learners").child(acct.getId()).child("Name").setValue(acct.getDisplayName());
-                        dbRef.child("Learners").child(acct.getId()).child("Email").setValue(acct.getEmail());
-                        if (!task.isSuccessful()) {
-                            Log.w(TAG, "signInWithCredential", task.getException());
-                            Toast.makeText(Learner_Login.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-
-                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                        user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()){
-
-                                }
+                            dbRef.child("Learners").child(acct.getId()).child("Name").setValue(acct.getDisplayName());
+                            dbRef.child("Learners").child(acct.getId()).child("Email").setValue(acct.getEmail());
+                            if (!task.isSuccessful()) {
+                                Log.w(TAG, "signInWithCredential", task.getException());
+                                Toast.makeText(Learner_Login.this, "Authentication failed.",
+                                        Toast.LENGTH_SHORT).show();
                             }
-                        });
-                    }
-                });
+
+//                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//                        user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<Void> task) {
+//                                if (task.isSuccessful()){
+//
+//                                }
+//                            }
+//                        });
+                        }
+                    });
+
 
 
     }
+
+
 
 
        @Override

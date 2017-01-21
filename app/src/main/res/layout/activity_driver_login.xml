@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.stephen.fyp_driving_lessons.Learner_Login"
+    android:orientation="vertical"
+    style="@style/AppTheme"
+    >
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/status"
+        android:text="Instructor Login"
+        android:layout_gravity="center"
+        android:textSize="25sp"/>
+
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+    <com.google.android.gms.common.SignInButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/loginButton"
+        android:layout_gravity="center"
+        android:onClick="onClick"/>
+
+    <!--<EditText-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:hint="Email" />-->
+    <!--<EditText-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:hint="Password"/>-->
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+        <!--<Button-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Register"-->
+            <!--android:id="@+id/registerButton"-->
+            <!--android:textColor="#000000"-->
+            <!--android:background="#f2f2f2"-->
+            <!--android:padding="10dp"-->
+            <!--android:fontFamily="sans-serif-condensed"/>-->
+        <!--<Button-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Login"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:textColor="#000000"-->
+            <!--android:background="#f2f2f2"-->
+            <!--android:padding="10dp"-->
+            <!--android:fontFamily="sans-serif-condensed"-->
+            <!--/>-->
+    <!--</RelativeLayout>-->
+
+
+</LinearLayout>

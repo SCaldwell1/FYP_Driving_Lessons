@@ -35,4 +35,7 @@
     <string name="title_activity_instructo_details">InstructoDetails</string>
     <string name="title_activity_instructor_details">InstructorDetails</string>
     <string name="title_activity_instructors__list">Instructors_List</string>
+    <string name="title_activity_learner_register">LearnerRegister</string>
+    <string name="learner_login">Learner Login</string>
+    <string name="title_activity_driver_login">DriverLogin</string>
 </resources>
