@@ -38,4 +38,21 @@
     <string name="title_activity_learner_register">LearnerRegister</string>
     <string name="learner_login">Learner Login</string>
     <string name="title_activity_driver_login">DriverLogin</string>
+    <string name="instructor_login">Instructor Login</string>
+    <string name="book_your_test">Book your test</string>
+    <string name="driving_lessons">Driving Lessons</string>
+    <string name="instructor">Instructor</string>
+    <string name="learner">Learner</string>
+    <string name="theory_test">Theory Test</string>
+    <string name="email">Email</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="title_activity_driver_details">DriverDetails</string>
+    <string name="title_activity_instructor_register">instructorRegister</string>
+    <string name="instructorRegister">Register</string>
+    <string name="instructorLogOut">Log Out</string>
+    <string name="learner_register">Learner Register</string>
+    <string name="learner_details">Learner Details</string>
+    <string name="driver_detail">Driver Detail</string>
 </resources>

@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="learnerSignOutButton" type="id" />
+    <item name="DriverName" type="id">DriverName</item>
+    <item name="loginButton" type="id">loginButton</item>
+    <item name="welcomeText" type="id">welcomeText</item>
 </resources>

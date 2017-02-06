@@ -10,7 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.stephen.fyp_driving_lessons.MainActivity"
     android:orientation="vertical"
-    
+
     >
 
     <TextView
@@ -18,12 +18,10 @@
         android:layout_height="wrap_content"
         android:textSize="40sp"
         android:padding="10dp"
-        android:text="Driving Lessons"
+        android:text="@string/driving_lessons"
         android:fontFamily="sans-serif-condensed"
         android:textColor="#000000"
-        android:background="#f2f2f2"
-        tools:targetApi="jelly_bean"
-        tools:ignore="HardcodedText,PxUsage" />
+        android:background="#f2f2f2"  />
 
     <Space
         android:layout_width="1dp"
@@ -34,13 +32,12 @@
         android:layout_height="40dp"
         android:gravity="left"
         android:padding="10dp"
-        android:text="Learner"
+        android:text="@string/learner"
         android:textColor="#000000"
         android:background="#f2f2f2"
         android:fontFamily="sans-serif-condensed"
         android:onClick="LearnerLogin"
-        tools:targetApi="jelly_bean"
-        tools:ignore="HardcodedText,RtlHardcoded" />
+        tools:ignore="RtlHardcoded" />
 
     <Space
         android:layout_width="1dp"
@@ -49,16 +46,15 @@
 
     <Button
         android:layout_width="fill_parent"
-        android:layout_height="40sp"
+        android:layout_height="40dp"
         android:gravity="left"
-        android:text="Instructor"
+        android:text="@string/instructor"
         android:textColor="#000000"
         android:background="#f2f2f2"
         android:padding="10dp"
         android:fontFamily="sans-serif-condensed"
         android:onClick="InstructorLogin"
-        tools:targetApi="jelly_bean"
-        tools:ignore="HardcodedText,RtlHardcoded" />
+        tools:ignore="RtlHardcoded" />
 
     <Space
     android:layout_width="1dp"
@@ -69,13 +65,12 @@
         android:layout_height="40dp"
         android:gravity="left"
         android:padding="10dp"
-        android:text="Book your test"
+        android:text="@string/book_your_test"
         android:textColor="#000000"
         android:background="#f2f2f2"
         android:fontFamily="sans-serif-condensed"
         android:onClick="bookATest"
-        tools:targetApi="jelly_bean"
-        tools:ignore="HardcodedText,RtlHardcoded" />
+        tools:ignore="RtlHardcoded" />
 
     <Space
         android:layout_width="1dp"
@@ -86,12 +81,11 @@
         android:layout_width="fill_parent"
         android:layout_height="40dp"
         android:gravity="left"
-        android:text="Theory Test"
+        android:text="@string/theory_test"
         android:textColor="#000000"
         android:background="#f2f2f2"
         android:padding="10dp"
         android:fontFamily="sans-serif-condensed"
-        tools:targetApi="jelly_bean"
-        tools:ignore="HardcodedText,RtlHardcoded" />
+        tools:ignore="RtlHardcoded" />
 
 </LinearLayout>

@@ -15,14 +15,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "349930511882-33rmjabce6ufbj9j2a934l21l461ajl9.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.stephen.fyp_driving_lessons",
-            "certificate_hash": "47D58737F8777F1C8E604E2BE32F5A0DFD957B62"
-          }
-        },
-        {
           "client_id": "349930511882-sipc7a222p6vuhlbqn62p7hou6ufc9q4.apps.googleusercontent.com",
           "client_type": 3
         }
