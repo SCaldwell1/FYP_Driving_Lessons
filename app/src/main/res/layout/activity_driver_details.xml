@@ -21,23 +21,29 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@id/welcomeText"
-        />
-
+        android:id="@id/welcomeText" />
 
 
     <CalendarView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:minDate="01/01/2017"
-        android:clickable="true"
-        android:minDate="01/01/2017"
-        android:contextClickable="true"></CalendarView>
+        android:minDate="01/01/2017" />
 
+    <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/instructorLogOut"
         android:id="@+id/instructorLogOut"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Booking"
+        android:id="@+id/addBookingButton"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+</RelativeLayout>
 </LinearLayout>

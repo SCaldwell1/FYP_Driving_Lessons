@@ -46,7 +46,10 @@
             android:label="@string/title_activity_driver_details" />
         <activity
             android:name=".instructorRegister"
-            android:label="@string/title_activity_instructor_register"></activity>
+            android:label="@string/title_activity_instructor_register" />
+        <activity
+            android:name=".InstructorBookings"
+            android:label="@string/title_activity_instructor_bookings"></activity>
     </application>
 
 </manifest>

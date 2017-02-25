@@ -12,7 +12,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class DriverDetails extends Activity implements View.OnClickListener{
     FirebaseAuth firebaseAuth;
-    Button logout;
+    Button logout, addBooking;
     TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +31,14 @@ public class DriverDetails extends Activity implements View.OnClickListener{
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
         textView.setText("Welcome " + user.getEmail());
+        addBooking = (Button) findViewById(R.id.addBookingButton);
+        addBooking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DriverDetails.this, InstructorBookings.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
