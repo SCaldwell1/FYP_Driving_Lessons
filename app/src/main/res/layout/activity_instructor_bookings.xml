@@ -73,11 +73,11 @@
         android:inputType="text"
         />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/add_booking"
-        android:id="@+id/createBooking"/>
+            <Button
+                android:id="@+id/createBooking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_booking" />
 
         </LinearLayout>
 
