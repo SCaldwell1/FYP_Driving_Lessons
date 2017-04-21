@@ -48,14 +48,11 @@
             android:label="@string/title_activity_driver_login"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".DriverDetails"
-            android:label="@string/title_activity_driver_details" />
-        <activity
             android:name=".instructorRegister"
             android:label="@string/title_activity_instructor_register" />
         <activity
-        android:name=".InstructorBookings"
-        android:label="InstructorBooking" />
+            android:name=".InstructorBookings"
+            android:label="InstructorBooking" />
     </application>
 
 </manifest>

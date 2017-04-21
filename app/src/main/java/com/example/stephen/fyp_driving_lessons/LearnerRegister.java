@@ -39,7 +39,7 @@ public class LearnerRegister extends Activity implements View.OnClickListener{
 
         if(fAuth.getCurrentUser() !=null){
             finish();
-            startActivity(new Intent(getApplicationContext(), DriverDetails.class));
+            startActivity(new Intent(getApplicationContext(), InstructorBookings.class));
         }
 
 

@@ -40,7 +40,7 @@ public class instructorRegister extends Activity implements View.OnClickListener
 
         if(fAuth.getCurrentUser() !=null){
             finish();
-            startActivity(new Intent(getApplicationContext(), DriverDetails.class));
+            startActivity(new Intent(getApplicationContext(), InstructorBookings.class));
         }
 
 
@@ -71,7 +71,7 @@ public class instructorRegister extends Activity implements View.OnClickListener
                         progressDialog.dismiss();
                         if(task.isSuccessful()){
                             finish();
-                            startActivity(new Intent(getApplicationContext(), DriverDetails.class));
+                            startActivity(new Intent(getApplicationContext(), InstructorBookings.class));
                             ref.child("Instructors").child(fAuth.getCurrentUser().getUid()).child("Name").setValue(insName.getText().toString());
                             ref.child("Instructors").child(fAuth.getCurrentUser().getUid()).child("Email").setValue(email);
                             insName.setText("");

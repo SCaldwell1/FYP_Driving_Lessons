@@ -17,71 +17,85 @@
         android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="1">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/status"
-        android:text="@string/add_a_booking"
-        android:layout_gravity="center"
-        android:textSize="25sp"/>
-
-    <DatePicker
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/bookingDate"
-        android:datePickerMode="spinner"
-        android:calendarViewShown="false"/>
-
-    <TimePicker
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/bookingTime"
-        android:timePickerMode="spinner"
-        />
-
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/learner_name"
-        android:id="@+id/bookingName"
-        android:inputType="text"
-        />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/address_1"
-        android:id="@+id/bookingAddress1"
-        android:inputType="text"
-        />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/address2"
-        android:id="@+id/bookingAddress2"
-        android:inputType="text"
-        />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/address_3"
-        android:id="@+id/bookingAddress3"
-        android:inputType="text"
-        />
-
-            <Button
-                android:id="@+id/createBooking"
+                <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/add_booking" />
+                android:id="@+id/status"
+                android:text="Bookings"
+                android:layout_gravity="center"
+                android:textSize="25sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/welcomeMessage"/>
 
+            <ListView
+                android:id="@+id/bookingList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="15dp" />
+
+            <Button
+                android:id="@+id/showForm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/add_booking"
+                android:visibility="invisible" />
+
+            <DatePicker
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/bookingDate"
+                    android:datePickerMode="spinner"
+                    android:calendarViewShown="false"/>
+
+                <TimePicker
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/bookingTime"
+                    android:timePickerMode="spinner"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/learner_name"
+                    android:id="@+id/bookingName"
+                    android:inputType="text"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/address_1"
+                    android:id="@+id/bookingAddress1"
+                    android:inputType="text"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/address2"
+                    android:id="@+id/bookingAddress2"
+                    android:inputType="text"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/address_3"
+                    android:id="@+id/bookingAddress3"
+                    android:inputType="text"/>
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:id="@+id/createBooking"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/add_booking"/>
+            </RelativeLayout>
         </LinearLayout>
-
-
     </ScrollView>
-
 </LinearLayout>
