@@ -107,10 +107,6 @@ public class InstructorBookings extends Activity implements View.OnClickListener
         lv.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
-//        tv.setText("Name: " + bk.getLearnerName()
-//                    +"\nAddress: " + bk.getAddress()
-//                    +"\nDate: " + bk.getDate()
-//                    +"\nTime: " + bk.getTime());
 
 
         lrnrName.setText("");

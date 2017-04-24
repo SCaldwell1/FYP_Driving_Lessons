@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
 import android.content.Context;
 import android.content.ContentValues;
+import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
 
@@ -22,8 +23,10 @@ public class MyDBHandler extends SQLiteOpenHelper{
 
     public static final String TABLE_INSTRUCTORS = "Instructors";
     public static final String COLUMN_INSTRUCTOR_ID = "_id";
-    public static final String COLUMN_INSTRUCTOR_NAME = "Name";
-    public static final String COLUMN_INSTRUCTOR_EMAIL = "Email";
+    public static final String COLUMN_INSTRUCTOR_NAME = "instructorName";
+    public static final String COLUMN_INSTRUCTOR_EMAIL = "instructorEmail";
+    public static final String COLUMN_INSTRUCTOR_DESC = "instructorDescription";
+    public static final String COLUMN_INSTRUCTOR_SITE = "instructorWebsite";
 
     public MyDBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
@@ -31,18 +34,28 @@ public class MyDBHandler extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String query = "CREATE TABLE " + TABLE_BOOKING
+        String bookingQuery = "CREATE TABLE " + TABLE_BOOKING
                 + "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COLUMN_LEARNER_NAME + " TEXT, "
                 + COLUMN_ADDRESS + " TEXT, "
                 + COLUMN_DATE + " TEXT, "
                 + COLUMN_TIME + " TEXT" + ");";
-        sqLiteDatabase.execSQL(query);
+        sqLiteDatabase.execSQL(bookingQuery);
+
+        String instructorQuery = "CREATE TABLE " + TABLE_INSTRUCTORS
+                +"("+ COLUMN_INSTRUCTOR_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                +COLUMN_INSTRUCTOR_NAME + " TEXT, "
+                +COLUMN_INSTRUCTOR_EMAIL + " TEXT, "
+                +COLUMN_INSTRUCTOR_DESC + " TEXT, "
+                +COLUMN_INSTRUCTOR_SITE + " TEXT"
+                + ");";
+        sqLiteDatabase.execSQL(instructorQuery);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_BOOKING);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_BOOKING );
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_INSTRUCTORS);
         onCreate(sqLiteDatabase);
     }
 
@@ -56,6 +69,7 @@ public class MyDBHandler extends SQLiteOpenHelper{
         db.insert(TABLE_BOOKING, null, values);
         db.close();
     }
+
 
     public ArrayList<Bookings> getAllBookings(){
         ArrayList<Bookings> bookings = new ArrayList<>();
@@ -97,5 +111,58 @@ public class MyDBHandler extends SQLiteOpenHelper{
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("DELETE FROM " +TABLE_BOOKING+ ";");
     }
+    public void deleteAllInstructors() {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("DELETE FROM " +TABLE_INSTRUCTORS+ ";");
+    }
+    public void addInstructor (Instructors instructors){
+        ContentValues instructorValues = new ContentValues();
+        instructorValues.put(COLUMN_INSTRUCTOR_NAME, instructors.getInstructorName());
+        instructorValues.put(COLUMN_INSTRUCTOR_EMAIL, instructors.getInstructorEmail());
+        instructorValues.put(COLUMN_INSTRUCTOR_DESC, instructors.getDescription());
+        instructorValues.put(COLUMN_INSTRUCTOR_SITE, instructors.getWebsite());
+        SQLiteDatabase db = getWritableDatabase();
+        db.insert(TABLE_INSTRUCTORS, null, instructorValues);
+        db.close();
+    }
+    public String getInstructors(){
+        ArrayList<Instructors> instructorsArray = new ArrayList<>();
+        String insString="";
+        SQLiteDatabase db = getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_INSTRUCTORS;
+        Cursor cur = db.rawQuery(query, null);
+        cur.moveToFirst();
+        Instructors instructors = new Instructors();
+        while (!cur.isAfterLast()){
+            if (cur.getString(cur.getColumnIndex("instructorName")) != null){
+                insString += "Name: " + cur.getString(cur.getColumnIndex("instructorName"));
+                instructors.setInstructorName(insString);
+                insString += "\n";
+            }
+            if (cur.getString(cur.getColumnIndex("instructorEmail")) != null){
+                insString += "Email: " +  cur.getString(cur.getColumnIndex("instructorEmail"));
+                instructors.setInstructorEmail(insString);
+                insString += "\n";
+            }
+            if (cur.getString(cur.getColumnIndex("instructorDescription")) != null){
+                insString += "Description: " + cur.getString(cur.getColumnIndex("instructorDescription"));
+                instructors.setDescription(insString);
+                insString += "\n";
+            }
+            if (cur.getString(cur.getColumnIndex("instructorWebsite")) != null){
+                insString +="Website: " +  cur.getString(cur.getColumnIndex("instructorWebsite"));
+                instructors.setWebsite(insString);
+                insString += "\n________________________________\n";
+            }
+            instructorsArray.add(instructors);
+            cur.moveToNext();
+            System.out.println(cur.getCount() + " Instructors");
+            System.out.println("Name: " + instructors.getInstructorName() + "\nEmail: " + instructors.getInstructorEmail() + "\nDescription: " + instructors.getDescription() + "\nWebsite: " + instructors.getWebsite());
+        }
+
+        db.close();
+        return insString;
+    }
+
 
 }

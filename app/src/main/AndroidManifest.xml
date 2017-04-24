@@ -53,6 +53,7 @@
         <activity
             android:name=".InstructorBookings"
             android:label="InstructorBooking" />
+        <activity android:name=".InstructorsList"></activity>
     </application>
 
 </manifest>

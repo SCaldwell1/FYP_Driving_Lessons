@@ -12,7 +12,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LearnerDetails extends Activity implements View.OnClickListener{
     FirebaseAuth firebaseAuth;
-    Button logout;
+    Button logout, instructorList;
     TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +25,20 @@ public class LearnerDetails extends Activity implements View.OnClickListener{
         firebaseAuth = FirebaseAuth.getInstance();
         if(firebaseAuth.getCurrentUser() == null) {
             finish();
-            startActivity(new Intent(this, DriverLogin.class));
+            startActivity(new Intent(this, Learner_Login.class));
         }
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
         textView.setText("Welcome " + user.getEmail());
+        instructorList = (Button) findViewById(R.id.viewInstructors);
+        instructorList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(LearnerDetails.this, InstructorsList.class);
+                startActivity(i);
+            }
+        });
     }
 
     @Override

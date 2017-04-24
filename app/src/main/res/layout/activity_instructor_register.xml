@@ -22,7 +22,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Name"
-        android:id="@+id/instructorName"/>
+        android:id="@+id/instructorName"
+        android:inputType="text"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,6 +36,19 @@
         android:hint="Password"
         android:inputType="textPassword"
         android:id="@+id/instructorPassword"/>
+
+    <EditText
+        android:id="@+id/instructorDescription"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:hint="Description"
+        android:inputType="text"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Website"
+        android:id="@+id/instructorWebsite"
+        android:inputType= "textUri"/>
 
     <Button
         android:layout_width="wrap_content"

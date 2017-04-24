@@ -37,10 +37,7 @@ public class LearnerRegister extends Activity implements View.OnClickListener{
         progressDialog = new ProgressDialog(this);
         fAuth = FirebaseAuth.getInstance();
 
-        if(fAuth.getCurrentUser() !=null){
-            finish();
-            startActivity(new Intent(getApplicationContext(), InstructorBookings.class));
-        }
+
 
 
         ref = FirebaseDatabase.getInstance().getReference();

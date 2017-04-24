@@ -42,10 +42,6 @@ public class DriverLogin extends AppCompatActivity implements View.OnClickListen
         fireAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
 
-        if(fireAuth.getCurrentUser() !=null){
-            finish();
-            startActivity(new Intent(getApplicationContext(), InstructorBookings.class));
-        }
     }
 
     private void instructorLogin() {

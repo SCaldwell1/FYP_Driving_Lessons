@@ -53,10 +53,7 @@ public class Learner_Login extends AppCompatActivity implements View.OnClickList
         loginButton.setOnClickListener(this);
         progressDialog = new ProgressDialog(this);
 
-        if(mAuth.getCurrentUser() !=null){
-            finish();
-            startActivity(new Intent(getApplicationContext(), LearnerDetails.class));
-        }
+
         dbRef = FirebaseDatabase.getInstance().getReference();
 
     }
