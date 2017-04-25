@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         System.out.println(dbh.getDatabaseName());
         dbh.deleteAllBookings();
-        //dbh.deleteAllInstructors();
+        dbh.deleteAllInstructors();
 
     }
 

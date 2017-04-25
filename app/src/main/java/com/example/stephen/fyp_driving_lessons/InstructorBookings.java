@@ -2,6 +2,7 @@ package com.example.stephen.fyp_driving_lessons;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -21,18 +22,15 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class InstructorBookings extends Activity implements View.OnClickListener, Serializable {
-    Button addBooking, showForm;
+    Button addBooking, showBookings;
     FirebaseAuth fAuth;
     DatabaseReference ref;
     EditText lrnrName,lrnrAddress1,lrnrAddress2,lrnrAddress3;
     DatePicker bookingDate;
     TimePicker bookingTime;
-    ListView lv;
     TextView welcomeTv;
     MyDBHandler bdh;
-    String booking;
     Bookings bk = new Bookings();
-    ArrayList<String> bookings = new ArrayList<>();
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instructor_bookings);
@@ -49,22 +47,15 @@ public class InstructorBookings extends Activity implements View.OnClickListener
         fAuth = FirebaseAuth.getInstance();
         ref = FirebaseDatabase.getInstance().getReference();
         bdh = new MyDBHandler(this,null,null,1);
-        showForm = (Button) findViewById(R.id.showForm);
-        showForm.setOnClickListener(new View.OnClickListener() {
+        showBookings = (Button) findViewById(R.id.showBookings);
+        showBookings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                lrnrName.setVisibility(View.VISIBLE);
-                lrnrAddress1.setVisibility(View.VISIBLE);
-                lrnrAddress2.setVisibility(View.VISIBLE);
-                lrnrAddress3.setVisibility(View.VISIBLE);
-                addBooking.setVisibility(View.VISIBLE);
-                bookingDate.setVisibility(View.VISIBLE);
-                bookingTime.setVisibility(View.VISIBLE);
-                showForm.setVisibility(View.INVISIBLE);
+                startActivity(new Intent(InstructorBookings.this, BookingsList.class));
 
             }
         });
-        lv = (ListView) findViewById(R.id.bookingList);
+
         welcomeTv = (TextView)findViewById(R.id.welcomeMessage);
         welcomeTv.setText("Welcome " + fAuth.getCurrentUser().getEmail());
     }
@@ -100,27 +91,9 @@ public class InstructorBookings extends Activity implements View.OnClickListener
         bk.setAddress(address);
         bk.setDate(date);
         bk.setTime(time);
-        bdh.addBooking(new Bookings(name, address, date, time));
+        bdh.addBooking(bk);
         bdh.getAllBookings();
-        bookings.add(name +"\n"+ address+"\n" + date+"\n" + time);
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, bookings);
-        lv.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
 
-
-
-        lrnrName.setText("");
-        lrnrAddress1.setText("");
-        lrnrAddress2.setText("");
-        lrnrAddress3.setText("");
-        lrnrName.setVisibility(View.INVISIBLE);
-        lrnrAddress1.setVisibility(View.INVISIBLE);
-        lrnrAddress2.setVisibility(View.INVISIBLE);
-        lrnrAddress3.setVisibility(View.INVISIBLE);
-        addBooking.setVisibility(View.INVISIBLE);
-        bookingDate.setVisibility(View.INVISIBLE);
-        bookingTime.setVisibility(View.INVISIBLE);
-        showForm.setVisibility(View.VISIBLE);
 
     }
 

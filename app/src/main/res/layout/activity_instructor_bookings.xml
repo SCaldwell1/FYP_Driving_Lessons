@@ -21,30 +21,17 @@
             android:orientation="vertical"
             android:weightSum="1">
 
-                <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/status"
-                android:text="Bookings"
-                android:layout_gravity="center"
-                android:textSize="25sp"/>
+                <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/status"-->
+                <!--android:text="Bookings"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:textSize="25sp"/>-->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/welcomeMessage"/>
-
-            <ListView
-                android:id="@+id/bookingList"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingBottom="15dp" />
-
-            <Button
-                android:id="@+id/showForm"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/add_booking"
-                android:visibility="invisible" />
 
             <DatePicker
                     android:layout_width="match_parent"
@@ -90,11 +77,21 @@
             <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <Button
+
+                <Button
+                    android:id="@+id/showBookings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View Bookings"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true" />
+
+                <Button
                         android:id="@+id/createBooking"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/add_booking"/>
+
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>

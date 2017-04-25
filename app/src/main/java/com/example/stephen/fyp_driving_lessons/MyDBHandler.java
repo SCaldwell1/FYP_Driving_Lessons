@@ -71,7 +71,7 @@ public class MyDBHandler extends SQLiteOpenHelper{
     }
 
 
-    public ArrayList<Bookings> getAllBookings(){
+    public String getAllBookings(){
         ArrayList<Bookings> bookings = new ArrayList<>();
         String dbString="";
         SQLiteDatabase db = getWritableDatabase();
@@ -81,21 +81,25 @@ public class MyDBHandler extends SQLiteOpenHelper{
         Bookings b = new Bookings();
 
         while(!c.isAfterLast()){
-            if(c.getString(c.getColumnIndex("LearnerName"))!=null){
-                dbString += c.getString(c.getColumnIndex("LearnerName"));
+            if(c.getString(c.getColumnIndex("learnerName"))!=null){
+                dbString += "Name: " + c.getString(c.getColumnIndex("learnerName"));
                 b.setLearnerName(dbString);
+                dbString += "\n";
             }
-            if(c.getString(c.getColumnIndex("Address"))!=null){
-                dbString += c.getString(c.getColumnIndex("Address"));
+            if(c.getString(c.getColumnIndex("address"))!=null){
+                dbString += "Address: " + c.getString(c.getColumnIndex("address"));
                 b.setAddress(dbString);
+                dbString += "\n";
             }
-            if(c.getString(c.getColumnIndex("Date"))!=null){
-                dbString += c.getString(c.getColumnIndex("Date"));
+            if(c.getString(c.getColumnIndex("date"))!=null){
+                dbString += "Date: " + c.getString(c.getColumnIndex("date"));
                 b.setDate(dbString);
+                dbString += "\n";
             }
-            if(c.getString(c.getColumnIndex("Time"))!=null){
-                dbString += c.getString(c.getColumnIndex("Time"));
+            if(c.getString(c.getColumnIndex("time"))!=null){
+                dbString += "Time: " + c.getString(c.getColumnIndex("time"));
                 b.setTime(dbString);
+                dbString += "\n________________________________\n";
             }
             bookings.add(b);
             c.moveToNext();
@@ -104,7 +108,7 @@ public class MyDBHandler extends SQLiteOpenHelper{
         }
         db.close();
 
-        return bookings;
+        return dbString;
     }
 
     public void deleteAllBookings() {
