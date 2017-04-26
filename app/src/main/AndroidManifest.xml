@@ -54,7 +54,8 @@
             android:name=".InstructorBookings"
             android:label="InstructorBooking" />
         <activity android:name=".InstructorsList" />
-        <activity android:name=".BookingsList"></activity>
+        <activity android:name=".BookingsList" />
+        <activity android:name=".BookingForm"></activity>
     </application>
 
 </manifest>

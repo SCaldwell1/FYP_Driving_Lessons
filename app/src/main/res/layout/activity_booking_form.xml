@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    tools:context="com.example.stephen.fyp_driving_lessons.BookingForm">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/book_a_lesson"
+        android:textSize="25sp" />
+
+    <EditText
+        android:id="@+id/yourName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/yourAdress"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="8dp"
+        android:hint="@string/your_name" />
+
+    <EditText
+        android:id="@+id/yourAdress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/instructorName"
+        android:layout_alignStart="@+id/lessonDate"
+        android:layout_marginBottom="14dp"
+        android:hint="Your Address" />
+
+    <EditText
+        android:id="@+id/instructorName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/lessonTime"
+        android:layout_marginBottom="26dp"
+        android:hint="@string/instructor_name" />
+
+    <DatePicker
+        android:id="@+id/lessonDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/lessonTime"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner" />
+
+    <TimePicker
+        android:id="@+id/lessonTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/lessonDate"
+        android:layout_centerHorizontal="true"
+        android:timePickerMode="spinner" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/submit"
+        android:layout_below="@+id/lessonDate"
+        android:id="@+id/submitButton"/>
+
+</LinearLayout>
+</ScrollView>

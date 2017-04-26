@@ -77,21 +77,5 @@
         tools:targetApi="jelly_bean"
         tools:ignore="HardcodedText,RtlHardcoded" />
 
-    <Space
-        android:layout_width="1dp"
-        android:layout_height="3dp" />
-
-
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="40dp"
-        android:gravity="left"
-        android:text="Theory Test"
-        android:textColor="#000000"
-        android:background="#f2f2f2"
-        android:padding="10dp"
-        android:fontFamily="sans-serif-condensed"
-        tools:targetApi="jelly_bean"
-        tools:ignore="HardcodedText,RtlHardcoded" />
 
 </LinearLayout>

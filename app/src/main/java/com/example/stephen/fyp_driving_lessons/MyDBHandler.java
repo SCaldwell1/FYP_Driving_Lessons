@@ -10,7 +10,7 @@ import android.widget.ArrayAdapter;
 import java.util.ArrayList;
 
 
-public class MyDBHandler extends SQLiteOpenHelper{
+public class MyDBHandler extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "drivingLessons.db";
@@ -43,23 +43,23 @@ public class MyDBHandler extends SQLiteOpenHelper{
         sqLiteDatabase.execSQL(bookingQuery);
 
         String instructorQuery = "CREATE TABLE " + TABLE_INSTRUCTORS
-                +"("+ COLUMN_INSTRUCTOR_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                +COLUMN_INSTRUCTOR_NAME + " TEXT, "
-                +COLUMN_INSTRUCTOR_EMAIL + " TEXT, "
-                +COLUMN_INSTRUCTOR_DESC + " TEXT, "
-                +COLUMN_INSTRUCTOR_SITE + " TEXT"
+                + "(" + COLUMN_INSTRUCTOR_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + COLUMN_INSTRUCTOR_NAME + " TEXT, "
+                + COLUMN_INSTRUCTOR_EMAIL + " TEXT, "
+                + COLUMN_INSTRUCTOR_DESC + " TEXT, "
+                + COLUMN_INSTRUCTOR_SITE + " TEXT"
                 + ");";
         sqLiteDatabase.execSQL(instructorQuery);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_BOOKING );
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_BOOKING);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_INSTRUCTORS);
         onCreate(sqLiteDatabase);
     }
 
-    public void addBooking (Bookings booking){
+    public void addBooking(Bookings booking) {
         ContentValues values = new ContentValues();
         values.put(COLUMN_LEARNER_NAME, booking.getLearnerName());
         values.put(COLUMN_ADDRESS, booking.getAddress());
@@ -71,32 +71,32 @@ public class MyDBHandler extends SQLiteOpenHelper{
     }
 
 
-    public String getAllBookings(){
+    public String getAllBookings() {
         ArrayList<Bookings> bookings = new ArrayList<>();
-        String dbString="";
+        String dbString = "";
         SQLiteDatabase db = getWritableDatabase();
         String query = "SELECT * FROM " + TABLE_BOOKING;
         Cursor c = db.rawQuery(query, null);
         c.moveToFirst();
         Bookings b = new Bookings();
 
-        while(!c.isAfterLast()){
-            if(c.getString(c.getColumnIndex("learnerName"))!=null){
+        while (!c.isAfterLast()) {
+            if (c.getString(c.getColumnIndex("learnerName")) != null) {
                 dbString += "Name: " + c.getString(c.getColumnIndex("learnerName"));
                 b.setLearnerName(dbString);
                 dbString += "\n";
             }
-            if(c.getString(c.getColumnIndex("address"))!=null){
+            if (c.getString(c.getColumnIndex("address")) != null) {
                 dbString += "Address: " + c.getString(c.getColumnIndex("address"));
                 b.setAddress(dbString);
                 dbString += "\n";
             }
-            if(c.getString(c.getColumnIndex("date"))!=null){
+            if (c.getString(c.getColumnIndex("date")) != null) {
                 dbString += "Date: " + c.getString(c.getColumnIndex("date"));
                 b.setDate(dbString);
                 dbString += "\n";
             }
-            if(c.getString(c.getColumnIndex("time"))!=null){
+            if (c.getString(c.getColumnIndex("time")) != null) {
                 dbString += "Time: " + c.getString(c.getColumnIndex("time"));
                 b.setTime(dbString);
                 dbString += "\n________________________________\n";
@@ -104,7 +104,7 @@ public class MyDBHandler extends SQLiteOpenHelper{
             bookings.add(b);
             c.moveToNext();
             System.out.println(c.getCount() + "Bookings");
-            System.out.println(b.getLearnerName() +"\n" + b.getAddress() +"\n" + b.getDate()+"\n" +b.getTime());
+            System.out.println(b.getLearnerName() + "\n" + b.getAddress() + "\n" + b.getDate() + "\n" + b.getTime());
         }
         db.close();
 
@@ -113,13 +113,15 @@ public class MyDBHandler extends SQLiteOpenHelper{
 
     public void deleteAllBookings() {
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("DELETE FROM " +TABLE_BOOKING+ ";");
+        db.execSQL("DELETE FROM " + TABLE_BOOKING + ";");
     }
+
     public void deleteAllInstructors() {
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("DELETE FROM " +TABLE_INSTRUCTORS+ ";");
+        db.execSQL("DELETE FROM " + TABLE_INSTRUCTORS + ";");
     }
-    public void addInstructor (Instructors instructors){
+
+    public void addInstructor(Instructors instructors) {
         ContentValues instructorValues = new ContentValues();
         instructorValues.put(COLUMN_INSTRUCTOR_NAME, instructors.getInstructorName());
         instructorValues.put(COLUMN_INSTRUCTOR_EMAIL, instructors.getInstructorEmail());
@@ -129,32 +131,33 @@ public class MyDBHandler extends SQLiteOpenHelper{
         db.insert(TABLE_INSTRUCTORS, null, instructorValues);
         db.close();
     }
-    public String getInstructors(){
+
+    public String getInstructors() {
         ArrayList<Instructors> instructorsArray = new ArrayList<>();
-        String insString="";
+        String insString = "";
         SQLiteDatabase db = getWritableDatabase();
         String query = "SELECT * FROM " + TABLE_INSTRUCTORS;
         Cursor cur = db.rawQuery(query, null);
         cur.moveToFirst();
         Instructors instructors = new Instructors();
-        while (!cur.isAfterLast()){
-            if (cur.getString(cur.getColumnIndex("instructorName")) != null){
+        while (!cur.isAfterLast()) {
+            if (cur.getString(cur.getColumnIndex("instructorName")) != null) {
                 insString += "Name: " + cur.getString(cur.getColumnIndex("instructorName"));
                 instructors.setInstructorName(insString);
                 insString += "\n";
             }
-            if (cur.getString(cur.getColumnIndex("instructorEmail")) != null){
-                insString += "Email: " +  cur.getString(cur.getColumnIndex("instructorEmail"));
+            if (cur.getString(cur.getColumnIndex("instructorEmail")) != null) {
+                insString += "Email: " + cur.getString(cur.getColumnIndex("instructorEmail"));
                 instructors.setInstructorEmail(insString);
                 insString += "\n";
             }
-            if (cur.getString(cur.getColumnIndex("instructorDescription")) != null){
+            if (cur.getString(cur.getColumnIndex("instructorDescription")) != null) {
                 insString += "Description: " + cur.getString(cur.getColumnIndex("instructorDescription"));
                 instructors.setDescription(insString);
                 insString += "\n";
             }
-            if (cur.getString(cur.getColumnIndex("instructorWebsite")) != null){
-                insString +="Website: " +  cur.getString(cur.getColumnIndex("instructorWebsite"));
+            if (cur.getString(cur.getColumnIndex("instructorWebsite")) != null) {
+                insString += "Website: " + cur.getString(cur.getColumnIndex("instructorWebsite"));
                 instructors.setWebsite(insString);
                 insString += "\n________________________________\n";
             }
@@ -168,5 +171,20 @@ public class MyDBHandler extends SQLiteOpenHelper{
         return insString;
     }
 
+    public String getInstructorName() {
+        String instructorName = "";
+        SQLiteDatabase db = getWritableDatabase();
+        String query = "SELECT instructorName FROM " + TABLE_INSTRUCTORS;
+        Cursor cur = db.rawQuery(query, null);
+        cur.moveToFirst();
 
+        while (!cur.isAfterLast()) {
+            if (cur.getString(cur.getColumnIndex("instructorName")) != null) {
+                instructorName += cur.getString(cur.getColumnIndex("instructorName"));
+                instructorName += "\n";
+            }
+        }
+        cur.moveToNext();
+        return instructorName;
+    }
 }
