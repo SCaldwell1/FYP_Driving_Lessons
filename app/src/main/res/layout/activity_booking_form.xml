@@ -36,13 +36,12 @@
         android:layout_marginBottom="14dp"
         android:hint="Your Address" />
 
-    <EditText
+    <Spinner
         android:id="@+id/instructorName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/lessonTime"
-        android:layout_marginBottom="26dp"
-        android:hint="@string/instructor_name" />
+        android:layout_marginBottom="26dp" />
 
     <DatePicker
         android:id="@+id/lessonDate"

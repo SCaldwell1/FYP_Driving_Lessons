@@ -8,6 +8,7 @@ import android.content.ContentValues;
 import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class MyDBHandler extends SQLiteOpenHelper {
@@ -171,20 +172,21 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return insString;
     }
 
-    public String getInstructorName() {
+    public List<String> getInstructorName() {
+        List<String> names = new ArrayList<String>();
         String instructorName = "";
-        SQLiteDatabase db = getWritableDatabase();
-        String query = "SELECT instructorName FROM " + TABLE_INSTRUCTORS;
+        SQLiteDatabase db = getReadableDatabase();
+        String query = "SELECT DISTINCT instructorName FROM " + TABLE_INSTRUCTORS;
         Cursor cur = db.rawQuery(query, null);
         cur.moveToFirst();
 
         while (!cur.isAfterLast()) {
-            if (cur.getString(cur.getColumnIndex("instructorName")) != null) {
-                instructorName += cur.getString(cur.getColumnIndex("instructorName"));
-                instructorName += "\n";
-            }
+            names.add(cur.getString(0));
+            System.out.println(instructorName);
+            cur.moveToNext();
+            System.out.println(cur.getCount() );
         }
-        cur.moveToNext();
-        return instructorName;
+        db.close();
+        return names;
     }
 }
