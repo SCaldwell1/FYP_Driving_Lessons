@@ -12,12 +12,11 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
 public class BookingForm extends AppCompatActivity implements View.OnClickListener{
-    EditText instructorName, learnerName, learnerAddress;
+    EditText learnerName, learnerAddress;
     Button submit;
     DatePicker date;
     TimePicker time;

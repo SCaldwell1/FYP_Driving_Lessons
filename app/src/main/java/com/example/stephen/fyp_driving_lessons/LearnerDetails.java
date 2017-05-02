@@ -1,14 +1,13 @@
 package com.example.stephen.fyp_driving_lessons;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.Activity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class LearnerDetails extends Activity implements View.OnClickListener{
     FirebaseAuth firebaseAuth;
@@ -28,9 +27,6 @@ public class LearnerDetails extends Activity implements View.OnClickListener{
             startActivity(new Intent(this, Learner_Login.class));
         }
 
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-
-        textView.setText("Welcome " + user.getEmail());
         instructorList = (Button) findViewById(R.id.viewInstructors);
         instructorList.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,6 +35,7 @@ public class LearnerDetails extends Activity implements View.OnClickListener{
                 startActivity(i);
             }
         });
+        textView.setText("Welcome " + firebaseAuth.getCurrentUser().getEmail());
     }
 
     @Override

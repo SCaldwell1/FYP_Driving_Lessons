@@ -1,11 +1,10 @@
 package com.example.stephen.fyp_driving_lessons;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.database.sqlite.SQLiteDatabase;
-import android.content.Context;
 import android.content.ContentValues;
-import android.widget.ArrayAdapter;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -110,16 +109,6 @@ public class MyDBHandler extends SQLiteOpenHelper {
         db.close();
 
         return dbString;
-    }
-
-    public void deleteAllBookings() {
-        SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("DELETE FROM " + TABLE_BOOKING + ";");
-    }
-
-    public void deleteAllInstructors() {
-        SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("DELETE FROM " + TABLE_INSTRUCTORS + ";");
     }
 
     public void addInstructor(Instructors instructors) {
