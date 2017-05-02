@@ -35,6 +35,10 @@
         android:layout_alignStart="@+id/lessonDate"
         android:layout_marginBottom="14dp"
         android:hint="Your Address" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/choose_instructor_name"/>
 
     <Spinner
         android:id="@+id/instructorName"
@@ -42,6 +46,16 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/lessonTime"
         android:layout_marginBottom="26dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/number_of_lessons"/>
+    <Spinner
+        android:id="@+id/numOfLesson"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="26dp"
+        />
 
     <DatePicker
         android:id="@+id/lessonDate"
