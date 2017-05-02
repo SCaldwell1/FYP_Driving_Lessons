@@ -10,12 +10,14 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class InstructorBookings extends Activity implements View.OnClickListener, Serializable {
     Button addBooking, showBookings;
@@ -54,6 +56,7 @@ public class InstructorBookings extends Activity implements View.OnClickListener
 
         welcomeTv = (TextView)findViewById(R.id.welcomeMessage);
         welcomeTv.setText("Welcome " + fAuth.getCurrentUser().getEmail());
+        bookingDate.setMinDate(System.currentTimeMillis()-1000);
     }
 
     @Override
@@ -78,17 +81,22 @@ public class InstructorBookings extends Activity implements View.OnClickListener
         String address = lrnrAddress1.getText().toString()+ ", "
                 + lrnrAddress2.getText().toString()+ ", "
                 + lrnrAddress3.getText().toString();
+        List<String> times = bdh.getTimes();
+        List<String> dates = bdh.getDates();
+        if(!times.contains(time) && !dates.contains(date)) {
+            ref.child("Bookings").child(fAuth.getCurrentUser().getUid()).child(name).child("Date").setValue(date);
+            ref.child("Bookings").child(fAuth.getCurrentUser().getUid()).child(name).child("Time").setValue(time);
+            ref.child("Bookings").child(fAuth.getCurrentUser().getUid()).child(name).child("Address").setValue(address);
 
-        ref.child("Bookings").child(fAuth.getCurrentUser().getUid()).child(name).child("Date").setValue(date);
-        ref.child("Bookings").child(fAuth.getCurrentUser().getUid()).child(name).child("Time").setValue(time);
-        ref.child("Bookings").child(fAuth.getCurrentUser().getUid()).child(name).child("Address").setValue(address);
-
-        bk.setLearnerName(name);
-        bk.setAddress(address);
-        bk.setDate(date);
-        bk.setTime(time);
-        bdh.addBooking(bk);
-        bdh.getAllBookings();
+            bk.setLearnerName(name);
+            bk.setAddress(address);
+            bk.setDate(date);
+            bk.setTime(time);
+            bdh.addBooking(bk);
+            bdh.getAllBookings();
+        }else{
+            Toast.makeText(InstructorBookings.this, "Date and time already booked please choose another", Toast.LENGTH_LONG).show();
+        }
 
 
     }

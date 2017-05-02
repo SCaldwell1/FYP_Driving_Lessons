@@ -35,6 +35,7 @@ public class BookingForm extends AppCompatActivity implements View.OnClickListen
         date = (DatePicker)findViewById(R.id.lessonDate);
         time = (TimePicker)findViewById(R.id.lessonTime);
         time.setIs24HourView(true);
+        date.setMinDate(System.currentTimeMillis()-1000);
         spinner = (Spinner) findViewById(R.id.instructorName);
         List<String> list = db.getInstructorName();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
@@ -80,6 +81,9 @@ public class BookingForm extends AppCompatActivity implements View.OnClickListen
         String bTime = hour +":"+ minute;
         String iName = spinner.getSelectedItem().toString();
         String numLessons = lessons.getSelectedItem().toString();
+        List <String> times = db.getTimes();
+        List<String> dates = db.getDates();
+        if(!times.contains(bTime) && !dates.contains(bDate)){
         if(iName.equals("Stephen Caldwell")){
             Intent intentJD  = new Intent(Intent.ACTION_SEND);
             intentJD.setType("message/rfc822");
@@ -104,11 +108,16 @@ public class BookingForm extends AppCompatActivity implements View.OnClickListen
                 Toast.makeText(BookingForm.this, "There are no email clients installed.", Toast.LENGTH_LONG).show();
             }
         }
-        b.setLearnerName(lName);
-        b.setAddress(address);
-        b.setDate(bDate);
-        b.setTime(bTime);
-        db.addBooking(b);
+
+
+            b.setLearnerName(lName);
+            b.setAddress(address);
+            b.setDate(bDate);
+            b.setTime(bTime);
+            db.addBooking(b);
+        }else{
+            Toast.makeText(BookingForm.this, "Date and time already booked please choose another", Toast.LENGTH_LONG).show();
+        }
 
         learnerName.setText("");
         learnerAddress.setText("");

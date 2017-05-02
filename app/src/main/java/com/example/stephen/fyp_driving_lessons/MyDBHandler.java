@@ -111,6 +111,16 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return dbString;
     }
 
+    public void deleteAllBookings() {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("DELETE FROM " + TABLE_BOOKING + ";");
+    }
+
+    public void deleteAllInstructors() {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("DELETE FROM " + TABLE_INSTRUCTORS + ";");
+    }
+
     public void addInstructor(Instructors instructors) {
         ContentValues instructorValues = new ContentValues();
         instructorValues.put(COLUMN_INSTRUCTOR_NAME, instructors.getInstructorName());
@@ -177,5 +187,35 @@ public class MyDBHandler extends SQLiteOpenHelper {
         }
         db.close();
         return names;
+    }
+
+    public List<String> getTimes(){
+        List<String> times = new ArrayList<String>();
+        SQLiteDatabase db = getReadableDatabase();
+        String query = "SELECT DISTINCT time FROM " + TABLE_BOOKING;
+        Cursor cursor = db.rawQuery(query, null);
+        cursor.moveToFirst();
+
+        while(!cursor.isAfterLast()){
+            times.add(cursor.getString(0));
+            cursor.moveToNext();
+        }
+        db.close();
+        return times;
+    }
+
+    public List<String> getDates(){
+        List<String> times = new ArrayList<String>();
+        SQLiteDatabase db = getReadableDatabase();
+        String query = "SELECT DISTINCT date FROM " + TABLE_BOOKING;
+        Cursor cursor = db.rawQuery(query, null);
+        cursor.moveToFirst();
+
+        while(!cursor.isAfterLast()){
+            times.add(cursor.getString(0));
+            cursor.moveToNext();
+        }
+        db.close();
+        return times;
     }
 }
