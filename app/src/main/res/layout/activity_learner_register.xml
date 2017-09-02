@@ -37,6 +37,30 @@
         android:inputType="textPassword"
         android:hint="Password"
         android:id="@+id/registerPassword"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:hint="Address"
+        android:id="@+id/registerAddress"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:hint="Phone"
+        android:id="@+id/registerPhone"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="Driver Number"
+        android:id="@+id/driverNumber"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="Number of Lessons"
+        android:id="@+id/numberLessons"/>
 
     <Button
         android:layout_width="wrap_content"

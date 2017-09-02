@@ -28,6 +28,15 @@ public class MyDBHandler extends SQLiteOpenHelper {
     public static final String COLUMN_INSTRUCTOR_DESC = "instructorDescription";
     public static final String COLUMN_INSTRUCTOR_SITE = "instructorWebsite";
 
+    public static final String TABLE_LEARNERS = "Learners";
+    public static final String COLUMN_LEARNER_ID="id";
+    public static final String COLUMN_NAME = "name";
+    public static final String COLUMN_EMAIL = "email";
+    public static final String COLUMN_PHONE = "phone";
+    public static final String COLUMN_LEARNER_ADDRESS = "address";
+    public static final String COLUMN_DRIVER_NUMBER = "driverNumber";
+    public static final String COLUMN_NUMBER_LESSONS = "numberOfLessens";
+
     public MyDBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
     }
@@ -50,13 +59,87 @@ public class MyDBHandler extends SQLiteOpenHelper {
                 + COLUMN_INSTRUCTOR_SITE + " TEXT"
                 + ");";
         sqLiteDatabase.execSQL(instructorQuery);
+
+        String learnerQuery = "CREATE TABLE " + TABLE_LEARNERS
+                + "(" + COLUMN_LEARNER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + COLUMN_NAME + " TEXT, "
+                + COLUMN_EMAIL + " TEXT, "
+                + COLUMN_PHONE + " TEXT, "
+                + COLUMN_LEARNER_ADDRESS + " TEXT, "
+                + COLUMN_DRIVER_NUMBER + " TEXT, "
+                + COLUMN_NUMBER_LESSONS + " TEXT"
+                + ");";
+        sqLiteDatabase.execSQL(learnerQuery);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_BOOKING);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_INSTRUCTORS);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_LEARNERS);
         onCreate(sqLiteDatabase);
+    }
+
+    public void addLearner(Learners learner){
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_NAME, learner.getName());
+        values.put(COLUMN_EMAIL, learner.getEmail());
+        values.put(COLUMN_ADDRESS, learner.getAddress());
+        values.put(COLUMN_PHONE, learner.getPhone());
+        values.put(COLUMN_DRIVER_NUMBER, learner.getDriverNum());
+        values.put(COLUMN_NUMBER_LESSONS, learner.getNumLessons());
+        SQLiteDatabase db = getWritableDatabase();
+        db.insert(TABLE_LEARNERS, null, values);
+        db.close();
+    }
+
+    public String getAllLearners(){
+        ArrayList<Learners> learners = new ArrayList<>();
+        String dbString = "";
+        SQLiteDatabase db = getWritableDatabase();
+        String query = "SELECT * FROM "+ TABLE_LEARNERS;
+        Cursor c = db.rawQuery(query, null);
+        c.moveToFirst();
+        Learners l = new Learners();
+
+        while (!c.isAfterLast()){
+            if (c.getString(c.getColumnIndex("name")) != null) {
+                dbString += "Name: " + c.getString(c.getColumnIndex("name"));
+                l.setName(dbString);
+                dbString += "\n";
+            }
+            if (c.getString(c.getColumnIndex("email")) != null) {
+                dbString += "Email: " + c.getString(c.getColumnIndex("email"));
+                l.setName(dbString);
+                dbString += "\n";
+            }
+            if (c.getString(c.getColumnIndex("address")) != null) {
+                dbString += "Address: " + c.getString(c.getColumnIndex("address"));
+                l.setName(dbString);
+                dbString += "\n";
+            }
+            if (c.getString(c.getColumnIndex("phone")) != null) {
+                dbString += "Phone: " + c.getString(c.getColumnIndex("phone"));
+                l.setName(dbString);
+                dbString += "\n";
+            }
+            if (c.getString(c.getColumnIndex("driverNumber")) != null) {
+                dbString += "Driver Number: " + c.getString(c.getColumnIndex("driverNumber"));
+                l.setName(dbString);
+                dbString += "\n";
+            }
+            if (c.getString(c.getColumnIndex("numberOfLessens")) != null) {
+                dbString += "Number of Lessons: " + c.getString(c.getColumnIndex("numberOfLessens"));
+                l.setName(dbString);
+                dbString += "\n________________________________";
+            }
+            learners.add(l);
+            c.moveToNext();
+            System.out.println(c.getCount() + "Learners");
+            System.out.println(l.getName() + "\n" + l.getEmail() + "\n" + l.getAddress() + "\n" + l.getPhone() + "\n" + l.getDriverNum() + "\n" + l.getNumLessons());
+        }
+        db.close();
+        return dbString;
     }
 
     public void addBooking(Bookings booking) {

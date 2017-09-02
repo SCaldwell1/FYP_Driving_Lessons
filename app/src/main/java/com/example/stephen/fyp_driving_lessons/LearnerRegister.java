@@ -20,10 +20,12 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class LearnerRegister extends Activity implements View.OnClickListener{
     Button lrnRegButton;
-    EditText lrnName, lrnEmail, lrnPassword;
+    EditText lrnName, lrnEmail, lrnPassword, lrnAddress, lrnPhone, drvrNumber, numLessons;
     ProgressDialog progressDialog;
     FirebaseAuth fAuth;
     DatabaseReference ref;
+    Learners l;
+    MyDBHandler mdbh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,13 +35,15 @@ public class LearnerRegister extends Activity implements View.OnClickListener{
         lrnName = (EditText) findViewById(R.id.registerName);
         lrnEmail = (EditText)findViewById(R.id.registerEmail);
         lrnPassword = (EditText) findViewById(R.id.registerPassword);
+        lrnAddress = (EditText) findViewById(R.id.registerAddress);
+        lrnPhone = (EditText) findViewById(R.id.registerPhone);
+        drvrNumber = (EditText) findViewById(R.id.driverNumber);
+        numLessons = (EditText) findViewById(R.id.numberLessons);
         lrnRegButton.setOnClickListener(this);
         progressDialog = new ProgressDialog(this);
         fAuth = FirebaseAuth.getInstance();
-
-
-
-
+        l = new Learners();
+        mdbh = new MyDBHandler(this,null,null,1);
         ref = FirebaseDatabase.getInstance().getReference();
     }
 
@@ -74,11 +78,25 @@ public class LearnerRegister extends Activity implements View.OnClickListener{
                         if(task.isSuccessful()){
                             finish();
                             startActivity(new Intent(getApplicationContext(), LearnerDetails.class));
+                            l.setName(lrnName.getText().toString());
+                            l.setEmail(lrnEmail.getText().toString());
+                            l.setAddress(lrnAddress.getText().toString());
+                            l.setPhone(Integer.parseInt(lrnPhone.getText().toString()));
+                            l.setDriverNum(Integer.parseInt(drvrNumber.getText().toString()));
+                            l.setNumLessons(Integer.parseInt(numLessons.getText().toString()));
                             ref.child("Learners").child(fAuth.getCurrentUser().getUid()).child("Name").setValue(lrnName.getText().toString());
                             ref.child("Learners").child(fAuth.getCurrentUser().getUid()).child("Email").setValue(email);
+
+                            mdbh.addLearner(l);
+                            mdbh.getAllLearners();
+
                             lrnName.setText("");
                             lrnEmail.setText("");
                             lrnPassword.setText("");
+                            lrnAddress.setText("");
+                            lrnPhone.setText("");
+                            drvrNumber.setText("");
+                            numLessons.setText("");
                             Toast.makeText(LearnerRegister.this, "Register Successful", Toast.LENGTH_LONG).show();
                         }else {
                             Toast.makeText(LearnerRegister.this, "Register Failed", Toast.LENGTH_LONG).show();
