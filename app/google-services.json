@@ -1,27 +1,35 @@
 {
   "project_info": {
-    "project_number": "349930511882",
-    "firebase_url": "https://fyp-driving-lessons.firebaseio.com",
-    "project_id": "fyp-driving-lessons",
-    "storage_bucket": "fyp-driving-lessons.appspot.com"
+    "project_number": "828968485389",
+    "firebase_url": "https://fyp-driving-lessons-d3ca9.firebaseio.com",
+    "project_id": "fyp-driving-lessons-d3ca9",
+    "storage_bucket": "fyp-driving-lessons-d3ca9.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:349930511882:android:e7668b5c6f909735",
+        "mobilesdk_app_id": "1:828968485389:android:e7668b5c6f909735",
         "android_client_info": {
           "package_name": "com.example.stephen.fyp_driving_lessons"
         }
       },
       "oauth_client": [
         {
-          "client_id": "349930511882-sipc7a222p6vuhlbqn62p7hou6ufc9q4.apps.googleusercontent.com",
+          "client_id": "828968485389-qio8llfgii69e8ql6ko1mem4p26vs9g4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.stephen.fyp_driving_lessons",
+            "certificate_hash": "83d5d54ed52b37dc25137b41c2eb2f0904c4f3af"
+          }
+        },
+        {
+          "client_id": "828968485389-1q1c8q61abk2ls08h0fokolpa1u35v8b.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDyoS2_EhoQsaGFEhp2_Bl2iFfR9aM1OpY"
+          "current_key": "AIzaSyBX9D7pLAAbGKAcB-IZU8BHppx7AmMzHPs"
         }
       ],
       "services": {
@@ -32,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "349930511882-sipc7a222p6vuhlbqn62p7hou6ufc9q4.apps.googleusercontent.com",
+              "client_id": "828968485389-1q1c8q61abk2ls08h0fokolpa1u35v8b.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
