@@ -12,7 +12,8 @@ import com.google.firebase.auth.FirebaseAuth;
 public class LearnerDetails extends Activity implements View.OnClickListener{
     FirebaseAuth firebaseAuth;
     Button logout, instructorList;
-    TextView textView;
+    TextView textView, detailView;
+    MyDBHandler mdbh;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +22,7 @@ public class LearnerDetails extends Activity implements View.OnClickListener{
         logout = (Button)findViewById(R.id.instructorLogOut);
         logout.setOnClickListener(this);
         textView = (TextView)findViewById(R.id.welcomeText);
+        detailView = (TextView) findViewById(R.id.fullDetail);
         firebaseAuth = FirebaseAuth.getInstance();
         if(firebaseAuth.getCurrentUser() == null) {
             finish();

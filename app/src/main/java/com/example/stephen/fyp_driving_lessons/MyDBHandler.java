@@ -301,4 +301,15 @@ public class MyDBHandler extends SQLiteOpenHelper {
         db.close();
         return times;
     }
+
+    public List<String> getLearnerDetails(){
+        List<String> learner = new ArrayList<String>();
+        SQLiteDatabase db = getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_LEARNERS;
+        Cursor c = db.rawQuery(query, null);
+        c.moveToFirst();
+        learner.add(c.getString(0));
+        db.close();
+        return learner;
+    }
 }
