@@ -28,7 +28,6 @@ public class instructorRegister extends Activity implements View.OnClickListener
     FirebaseAuth fAuth;
     DatabaseReference ref;
     Instructors i;
-    MyDBHandler mdbh ;
     ListView lv;
     ArrayList<Instructors> instructorsArray = new ArrayList<>();
     @Override
@@ -45,9 +44,8 @@ public class instructorRegister extends Activity implements View.OnClickListener
         progressDialog = new ProgressDialog(this);
         fAuth = FirebaseAuth.getInstance();
         i = new Instructors();
-        InstructorsList il = new InstructorsList();
         ref = FirebaseDatabase.getInstance().getReference();
-        mdbh=  new MyDBHandler(this,null,null,1);
+
 
     }
 
@@ -73,8 +71,6 @@ public class instructorRegister extends Activity implements View.OnClickListener
                         progressDialog.dismiss();
                         if(task.isSuccessful()){
                             finish();
-                            startActivity(new Intent(getApplicationContext(), InstructorBookings.class));
-
                             i.setInstructorName(insName.getText().toString());
                             i.setInstructorEmail(insEmail.getText().toString());
                             i.setDescription(insDesc.getText().toString());
@@ -84,8 +80,6 @@ public class instructorRegister extends Activity implements View.OnClickListener
                             ref.child("Instructors").child(fAuth.getCurrentUser().getUid()).child("Description").setValue(insDesc.getText().toString());
                             ref.child("Instructors").child(fAuth.getCurrentUser().getUid()).child("Website").setValue(insSite.getText().toString());
 
-                            mdbh.addInstructor(i);
-                            mdbh.getInstructors();
                             insName.setText("");
                             insEmail.setText("");
                             insPassword.setText("");

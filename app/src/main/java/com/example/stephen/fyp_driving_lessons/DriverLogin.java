@@ -64,7 +64,7 @@ public class DriverLogin extends AppCompatActivity implements View.OnClickListen
                         progressDialog.dismiss();
                         if(task.isSuccessful()){
                             finish();
-                            startActivity(new Intent(getApplicationContext(), InstructorBookings.class));
+
                         }
                     }
                 });

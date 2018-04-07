@@ -26,7 +26,7 @@ public class LearnerRegister extends Activity implements View.OnClickListener{
     FirebaseAuth fAuth;
     DatabaseReference ref;
     Learners l;
-    MyDBHandler mdbh;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,6 @@ public class LearnerRegister extends Activity implements View.OnClickListener{
         progressDialog = new ProgressDialog(this);
         fAuth = FirebaseAuth.getInstance();
         l = new Learners();
-        mdbh = new MyDBHandler(this,null,null,1);
         ref = FirebaseDatabase.getInstance().getReference();
     }
 
@@ -78,7 +77,6 @@ public class LearnerRegister extends Activity implements View.OnClickListener{
                         progressDialog.dismiss();
                         if(task.isSuccessful()){
                             finish();
-                            startActivity(new Intent(getApplicationContext(), LearnerDetails.class));
                             l.setName(lrnName.getText().toString());
                             l.setEmail(lrnEmail.getText().toString());
                             l.setAddress(lrnAddress.getText().toString());
@@ -87,9 +85,8 @@ public class LearnerRegister extends Activity implements View.OnClickListener{
                             l.setNumLessons(Integer.parseInt(numLessons.getText().toString()));
                             ref.child("Learners").child(fAuth.getCurrentUser().getUid()).child("Name").setValue(lrnName.getText().toString());
                             ref.child("Learners").child(fAuth.getCurrentUser().getUid()).child("Email").setValue(email);
+                            ref.child("Learners").child(fAuth.getCurrentUser().getUid()).child("User Type").setValue("Learner");
 
-                            mdbh.addLearner(l);
-                            mdbh.getAllLearners();
 
                             lrnName.setText("");
                             lrnEmail.setText("");

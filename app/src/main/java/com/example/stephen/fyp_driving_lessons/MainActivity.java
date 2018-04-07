@@ -1,19 +1,43 @@
 package com.example.stephen.fyp_driving_lessons;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+
 public class MainActivity extends AppCompatActivity {
-    MyDBHandler dbh = new MyDBHandler(this,null,null,1);
+
+    String userId;
+    DatabaseReference dab;
+    DatabaseReference actionItemRef;
+    DatabaseReference actionItemUsers;
+    FirebaseUser firebaseUser;
+    FirebaseAuth.AuthStateListener listener;
+    FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        System.out.println(dbh.getInstructorName());
-        dbh.deleteAllBookings();
+
+        listener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                firebaseUser = firebaseAuth.getCurrentUser();
+                if(firebaseUser != null) {
+                    userId = firebaseUser.getUid();
+                }
+                else {
+                    Intent intent = new Intent(MainActivity.this, Learner_Login.class);
+                    startActivity(intent);
+                }
+            }
+        };
 
     }
 

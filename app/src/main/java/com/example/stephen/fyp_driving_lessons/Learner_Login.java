@@ -81,7 +81,8 @@ public class Learner_Login extends AppCompatActivity implements View.OnClickList
                         progressDialog.dismiss();
                         if(task.isSuccessful()){
                             finish();
-                            startActivity(new Intent(getApplicationContext(), LearnerDetails.class));
+                            Intent intent = new Intent(Learner_Login.this, LearnerDetails.class);
+                            startActivity(intent);
                         }
                     }
                 });

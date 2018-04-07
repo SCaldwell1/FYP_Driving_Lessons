@@ -30,10 +30,6 @@
             android:label="Learner_Login"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".LearnerDetails"
-            android:label="@string/title_activity_learner_details"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".BookATest"
             android:label="@string/title_activity_book_atest"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -48,12 +44,7 @@
         <activity
             android:name=".instructorRegister"
             android:label="@string/title_activity_instructor_register" />
-        <activity
-            android:name=".InstructorBookings"
-            android:label="InstructorBooking" />
-        <activity android:name=".InstructorsList" />
-        <activity android:name=".BookingsList" />
-        <activity android:name=".BookingForm"></activity>
+        <activity android:name=".LearnerDetails" />
     </application>
 
 </manifest>
