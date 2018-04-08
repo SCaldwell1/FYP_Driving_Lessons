@@ -1,13 +1,17 @@
 package com.example.stephen.fyp_driving_lessons;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -16,6 +20,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ThrowOnExtraProperties;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Map;
@@ -24,13 +29,9 @@ import java.util.Map;
 public class LearnerDetails extends AppCompatActivity {
 
     private static final String TAG = null;
-    String name;
+    String name,type;
     TextView text;
     DatabaseReference dab;
-    DatabaseReference actionItemRef;
-    DatabaseReference actionItemUsers;
-    FirebaseUser firebaseUser;
-    FirebaseAuth.AuthStateListener listener;
     FirebaseAuth auth;
 
 
@@ -49,12 +50,15 @@ public class LearnerDetails extends AppCompatActivity {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         Log.d(TAG+"Added", dataSnapshot.getValue(Object.class).toString());
-//                        name = dataSnapshot.getValue(String.class);text.setText(name);
-//                        text.setText(name);
+
 
                         Map<String, String> map = (Map)dataSnapshot.getValue();
+                        type = map.get("User Type");
                         name = map.get("Name");
-                        text.setText(name);
+                        if(type.equals("Learner")) {
+                            text.setText(name);
+                        }
+
                     }
 
                     @Override
@@ -64,7 +68,9 @@ public class LearnerDetails extends AppCompatActivity {
 
 
                 });
+
         text.setText(name);
+
     }
     private void fetchData(DataSnapshot snapshot) {
         LearnerDetails actionListItem = snapshot.getValue(LearnerDetails.class);

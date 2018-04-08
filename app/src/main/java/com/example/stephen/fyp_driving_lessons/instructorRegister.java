@@ -79,6 +79,7 @@ public class instructorRegister extends Activity implements View.OnClickListener
                             ref.child("Instructors").child(fAuth.getCurrentUser().getUid()).child("Email").setValue(insEmail.getText().toString());
                             ref.child("Instructors").child(fAuth.getCurrentUser().getUid()).child("Description").setValue(insDesc.getText().toString());
                             ref.child("Instructors").child(fAuth.getCurrentUser().getUid()).child("Website").setValue(insSite.getText().toString());
+                            ref.child("Instructors").child(fAuth.getCurrentUser().getUid()).child("User Type").setValue("Instructor");
 
                             insName.setText("");
                             insEmail.setText("");
