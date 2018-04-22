@@ -3,19 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.stephen.fyp_driving_lessons.InstructorsList">
-        <TextView
-            android:id="@+id/insTextView"
+    tools:context="com.example.stephen.fyp_driving_lessons.Instructor_List">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/instructor_list"
+            android:scrollbars="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true" />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/book_a_lessons"
-            android:id="@+id/bookLesson"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="153dp" />
+            android:layout_height="match_parent"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/text"/>
 
 </RelativeLayout>

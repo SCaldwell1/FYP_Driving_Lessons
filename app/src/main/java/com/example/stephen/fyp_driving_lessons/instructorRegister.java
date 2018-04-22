@@ -30,6 +30,7 @@ public class instructorRegister extends Activity implements View.OnClickListener
     Instructors i;
     ListView lv;
     ArrayList<Instructors> instructorsArray = new ArrayList<>();
+    int count = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +51,7 @@ public class instructorRegister extends Activity implements View.OnClickListener
     }
 
     private void registerInstructor(){
-
+        final int instructorNum = count++;
          if(TextUtils.isEmpty(insEmail.getText().toString())){
              Toast.makeText(this,"Please enter an email address", Toast.LENGTH_LONG).show();
              return;
@@ -75,11 +76,12 @@ public class instructorRegister extends Activity implements View.OnClickListener
                             i.setInstructorEmail(insEmail.getText().toString());
                             i.setDescription(insDesc.getText().toString());
                             i.setWebsite(insSite.getText().toString());
-                            ref.child("Instructors").child(fAuth.getCurrentUser().getUid()).child("Name").setValue(insName.getText().toString());
-                            ref.child("Instructors").child(fAuth.getCurrentUser().getUid()).child("Email").setValue(insEmail.getText().toString());
-                            ref.child("Instructors").child(fAuth.getCurrentUser().getUid()).child("Description").setValue(insDesc.getText().toString());
-                            ref.child("Instructors").child(fAuth.getCurrentUser().getUid()).child("Website").setValue(insSite.getText().toString());
-                            ref.child("Instructors").child(fAuth.getCurrentUser().getUid()).child("User Type").setValue("Instructor");
+                            ref.child("Instructors").child("" + instructorNum).child("UserID").setValue(fAuth.getCurrentUser().getUid());
+                            ref.child("Instructors").child("" + instructorNum).child("Name").setValue(insName.getText().toString());
+                            ref.child("Instructors").child("" + instructorNum).child("Email").setValue(insEmail.getText().toString());
+                            ref.child("Instructors").child("" + instructorNum).child("Description").setValue(insDesc.getText().toString());
+                            ref.child("Instructors").child("" + instructorNum).child("Website").setValue(insSite.getText().toString());
+                            ref.child("Instructors").child("" + instructorNum).child("User Type").setValue("Instructor");
 
                             insName.setText("");
                             insEmail.setText("");

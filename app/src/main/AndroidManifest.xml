@@ -45,6 +45,7 @@
             android:name=".instructorRegister"
             android:label="@string/title_activity_instructor_register" />
         <activity android:name=".LearnerDetails" />
+        <activity android:name=".Instructor_List" />
     </application>
 
 </manifest>

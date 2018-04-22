@@ -33,7 +33,7 @@ public class LearnerDetails extends AppCompatActivity {
     TextView text;
     DatabaseReference dab;
     FirebaseAuth auth;
-
+    Button ins_list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +42,7 @@ public class LearnerDetails extends AppCompatActivity {
 
         text = (TextView) findViewById(R.id.welcomeText);
         auth = FirebaseAuth.getInstance();
-
+        ins_list = (Button) findViewById(R.id.viewInstructors);
         dab = FirebaseDatabase.getInstance().getReference();
 
                 dab.child("Learners").child(auth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
@@ -70,6 +70,14 @@ public class LearnerDetails extends AppCompatActivity {
                 });
 
         text.setText(name);
+
+        ins_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LearnerDetails.this, Instructor_List.class);
+                startActivity(intent);
+            }
+        });
 
     }
     private void fetchData(DataSnapshot snapshot) {
